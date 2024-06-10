@@ -141,19 +141,40 @@
 # print(two_squares(428216372)) # 29262
 # print(two_squares(767307925)) # 0
 # =======================================
-def all_squared_pairs(n: int) -> list:
-    root_n = int(n ** 0.5)
-    final_list = list()
-    list_squares = [i ** 2 for i in range(root_n + 1)]
-    set_squares = set(list_squares)
-    for i in list_squares:
-        if n - i in set_squares:
-            root_square_a = int(i ** 0.5)
-            root_square_b = int((n - i) ** 0.5)
-            if ([root_square_a, root_square_b] not in final_list) and ([root_square_b, root_square_a]\
-                not in final_list):
-                final_list.append([root_square_a, root_square_b])
-    return final_list
-
+# def all_squared_pairs(n: int) -> list:
+#     root_n = int(n ** 0.5)
+#     final_list = list()
+#     list_squares = [i ** 2 for i in range(root_n + 1)]
+#     set_squares = set(list_squares)
+#     for i in list_squares:
+#         if n - i in set_squares:
+#             root_square_a = int(i ** 0.5)
+#             root_square_b = int((n - i) ** 0.5)
+#             if ([root_square_a, root_square_b] not in final_list) and ([root_square_b, root_square_a]\
+#                 not in final_list):
+#                 final_list.append([root_square_a, root_square_b])
+#     return final_list
+#
 
 # print(all_squared_pairs(325)) # [[1, 18], [6, 17], [10, 15]]
+# =========================================
+# def strip_comments(string: str, markers: list):
+#     new_string = string.split(' ' + markers[1])[0] # string without part after markers[1]
+#     start_substring = new_string.find(' ' + markers[0])
+#     end_of_substring = new_string.find('\n')
+#
+#     return new_string[:start_substring] + new_string[end_of_substring:]
+#
+# # print(strip_comments('apples, pears # and bananas\ngrapes\nbananas !apples', ['#', '!']))
+# print(strip_comments('a #b\nc\nd $e f g', ['#', '$']))
+# =========================================
+def find_uniq(arr: list):
+    set_arr = set(arr)
+    str_arr = str(arr)
+    item = set_arr.pop()
+    if str_arr.count(str(item)) == 1:
+        return item
+    else:
+        return set_arr.pop()
+
+print(find_uniq([1, 1, 3, 1, 1]))
