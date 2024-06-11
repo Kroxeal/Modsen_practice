@@ -236,41 +236,74 @@
 # print(a.equals(d))
 # print(a)
 # ===========================================
-def make_readable(seconds: int) -> str:
-    minutes = 0
-    hours = 0
-    while seconds >= 60 or minutes >= 60:
-        if seconds >= 60:
-            seconds -= 60
-            minutes += 1
-        if minutes >= 60:
-            minutes -= 60
-            hours += 1
-
-    if not hours:
-        hours_str = "00"
-    else:
-        hours_str = '0' + str(hours) if not hours // 10 else str(hours)
-
-    if not minutes:
-        minutes_str = '00'
-    else:
-        minutes_str = '0' + str(minutes) if not minutes // 10 else str(minutes)
-
-    if not seconds:
-        seconds_str = "00"
-    else:
-        seconds_str = '0' + str(seconds) if not seconds // 10 else str(seconds)
-
-    return str(f"{hours_str}:{minutes_str}:{seconds_str}")
-
-
-print(make_readable(60))
-print(make_readable(180))
-print(make_readable(59))
-print(make_readable(3599))
-print(make_readable(3600))
-print(1 // 10)
+# def make_readable(seconds: int) -> str:
+#     minutes = 0
+#     hours = 0
+#     while seconds >= 60 or minutes >= 60:
+#         if seconds >= 60:
+#             seconds -= 60
+#             minutes += 1
+#         if minutes >= 60:
+#             minutes -= 60
+#             hours += 1
+#
+#     if not hours:
+#         hours_str = "00"
+#     else:
+#         hours_str = '0' + str(hours) if not hours // 10 else str(hours)
+#
+#     if not minutes:
+#         minutes_str = '00'
+#     else:
+#         minutes_str = '0' + str(minutes) if not minutes // 10 else str(minutes)
+#
+#     if not seconds:
+#         seconds_str = "00"
+#     else:
+#         seconds_str = '0' + str(seconds) if not seconds // 10 else str(seconds)
+#
+#     return str(f"{hours_str}:{minutes_str}:{seconds_str}")
+#
+#
+# print(make_readable(60))
+# print(make_readable(180))
+# print(make_readable(59))
+# print(make_readable(3599))
+# print(make_readable(3600))
+# print(1 // 10)
 
 # ==================================================
 
+MORSE_CODE_DICT = {
+    '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F',
+    '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L',
+    '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R',
+    '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X',
+    '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1', '..---': '2',
+    '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7',
+    '---..': '8', '----.': '9', '...---...': 'SOS',
+    '.-.-.-': '.', '--..--': ',', '..--..': '?', '-.-.--': '!', '-....-': '-',
+    '-.--.': '(', '-.--.-': ')', '...-..-': '$', '.-...': '&'
+}
+
+
+def decode_morse(morse_code):
+    morse_code = morse_code.strip()
+
+    words = morse_code.split('   ')
+
+    decoded_message = []
+
+    for word in words:
+        characters = word.split(' ')
+        decoded_word = ''.join(MORSE_CODE_DICT[char] for char in characters)
+        decoded_message.append(decoded_word)
+
+    return ' '.join(decoded_message)
+
+print()
+print(decode_morse('--...'))
+# print(decode_morse('...-..- ...-..- ...-..-'))
+print(decode_morse('.   .'))
+print(decode_morse('. .'))
+print(decode_morse('...-..- ...-..- ...-..-'))
