@@ -179,60 +179,98 @@
 #
 # print(find_uniq([1, 1, 3, 1, 1]))
 # =========================================
-class Vector:
-
-    def __init__(self, lst: list):
-        self.lst = lst
-
-    def __str__(self):
-        return str(tuple(self.lst)).replace(' ', '')
-
-    def __iter__(self):
-        return iter(self.lst)
-
-    def __len__(self):
-        return len(self.lst)
-
-    def equals(self, other):
-        return self.lst == other.lst
-
-    def add(self, other):
-        if len(self.lst) != len(other):
-            raise Exception
-        new_lst = list()
-        for i, j in zip(self.lst, other):
-            new_lst.append(i + j)
-        return Vector(new_lst)
-
-    def subtract(self, other):
-        new_lst = list()
-        for i, j in zip(self.lst, other):
-            new_lst.append(i - j)
-        return Vector(new_lst)
-
-    def dot(self, other):
-        new_lst = list()
-        for i, j in zip(self.lst, other):
-            new_lst.append(i * j)
-        return sum(new_lst)
-
-    def norm(self):
-        new_lst = list()
-        for i in self.lst:
-            new_lst.append(i ** 2)
-        return sum(new_lst) ** 0.5
-
-
-a = Vector([1, 2, 3])
-b = Vector([4, 5, 6])
-c = Vector([4, 5, 6, 7])
-d = Vector([1, 2, 3])
-
-print(a.add(b))
-# print(a.add(c))
-print(a.subtract(b))
-print(a.dot(b))
-print(a.norm())
-print(a.equals(d))
-print(a)
+# class Vector:
+#
+#     def __init__(self, lst: list):
+#         self.lst = lst
+#
+#     def __str__(self):
+#         return str(tuple(self.lst)).replace(' ', '')
+#
+#     def __iter__(self):
+#         return iter(self.lst)
+#
+#     def __len__(self):
+#         return len(self.lst)
+#
+#     def equals(self, other):
+#         return self.lst == other.lst
+#
+#     def add(self, other):
+#         if len(self.lst) != len(other):
+#             raise Exception
+#         new_lst = list()
+#         for i, j in zip(self.lst, other):
+#             new_lst.append(i + j)
+#         return Vector(new_lst)
+#
+#     def subtract(self, other):
+#         new_lst = list()
+#         for i, j in zip(self.lst, other):
+#             new_lst.append(i - j)
+#         return Vector(new_lst)
+#
+#     def dot(self, other):
+#         new_lst = list()
+#         for i, j in zip(self.lst, other):
+#             new_lst.append(i * j)
+#         return sum(new_lst)
+#
+#     def norm(self):
+#         new_lst = list()
+#         for i in self.lst:
+#             new_lst.append(i ** 2)
+#         return sum(new_lst) ** 0.5
+#
+#
+# a = Vector([1, 2, 3])
+# b = Vector([4, 5, 6])
+# c = Vector([4, 5, 6, 7])
+# d = Vector([1, 2, 3])
+#
+# print(a.add(b))
+# # print(a.add(c))
+# print(a.subtract(b))
+# print(a.dot(b))
+# print(a.norm())
+# print(a.equals(d))
+# print(a)
 # ===========================================
+def make_readable(seconds: int) -> str:
+    minutes = 0
+    hours = 0
+    while seconds >= 60 or minutes >= 60:
+        if seconds >= 60:
+            seconds -= 60
+            minutes += 1
+        if minutes >= 60:
+            minutes -= 60
+            hours += 1
+
+    if not hours:
+        hours_str = "00"
+    else:
+        hours_str = '0' + str(hours) if not hours // 10 else str(hours)
+
+    if not minutes:
+        minutes_str = '00'
+    else:
+        minutes_str = '0' + str(minutes) if not minutes // 10 else str(minutes)
+
+    if not seconds:
+        seconds_str = "00"
+    else:
+        seconds_str = '0' + str(seconds) if not seconds // 10 else str(seconds)
+
+    return str(f"{hours_str}:{minutes_str}:{seconds_str}")
+
+
+print(make_readable(60))
+print(make_readable(180))
+print(make_readable(59))
+print(make_readable(3599))
+print(make_readable(3600))
+print(1 // 10)
+
+# ==================================================
+
