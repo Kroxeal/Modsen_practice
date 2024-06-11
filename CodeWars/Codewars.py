@@ -168,13 +168,71 @@
 # # print(strip_comments('apples, pears # and bananas\ngrapes\nbananas !apples', ['#', '!']))
 # print(strip_comments('a #b\nc\nd $e f g', ['#', '$']))
 # =========================================
-def find_uniq(arr: list):
-    set_arr = set(arr)
-    str_arr = str(arr)
-    item = set_arr.pop()
-    if str_arr.count(str(item)) == 1:
-        return item
-    else:
-        return set_arr.pop()
+# def find_uniq(arr: list):
+#     set_arr = set(arr)
+#     str_arr = str(arr)
+#     item = set_arr.pop()
+#     if str_arr.count(str(item)) == 1:
+#         return item
+#     else:
+#         return set_arr.pop()
+#
+# print(find_uniq([1, 1, 3, 1, 1]))
+# =========================================
+class Vector:
 
-print(find_uniq([1, 1, 3, 1, 1]))
+    def __init__(self, lst: list):
+        self.lst = lst
+
+    def __str__(self):
+        return str(tuple(self.lst)).replace(' ', '')
+
+    def __iter__(self):
+        return iter(self.lst)
+
+    def __len__(self):
+        return len(self.lst)
+
+    def equals(self, other):
+        return self.lst == other.lst
+
+    def add(self, other):
+        if len(self.lst) != len(other):
+            raise Exception
+        new_lst = list()
+        for i, j in zip(self.lst, other):
+            new_lst.append(i + j)
+        return Vector(new_lst)
+
+    def subtract(self, other):
+        new_lst = list()
+        for i, j in zip(self.lst, other):
+            new_lst.append(i - j)
+        return Vector(new_lst)
+
+    def dot(self, other):
+        new_lst = list()
+        for i, j in zip(self.lst, other):
+            new_lst.append(i * j)
+        return sum(new_lst)
+
+    def norm(self):
+        new_lst = list()
+        for i in self.lst:
+            new_lst.append(i ** 2)
+        return sum(new_lst) ** 0.5
+
+
+a = Vector([1, 2, 3])
+b = Vector([4, 5, 6])
+c = Vector([4, 5, 6, 7])
+d = Vector([1, 2, 3])
+
+print(a.add(b))
+# print(a.add(c))
+print(a.subtract(b))
+print(a.dot(b))
+print(a.norm())
+print(a.equals(d))
+print(a)
+# ===========================================
