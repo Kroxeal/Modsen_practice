@@ -273,37 +273,79 @@
 # print(1 // 10)
 
 # ==================================================
-
-MORSE_CODE_DICT = {
-    '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F',
-    '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L',
-    '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R',
-    '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X',
-    '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1', '..---': '2',
-    '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7',
-    '---..': '8', '----.': '9', '...---...': 'SOS',
-    '.-.-.-': '.', '--..--': ',', '..--..': '?', '-.-.--': '!', '-....-': '-',
-    '-.--.': '(', '-.--.-': ')', '...-..-': '$', '.-...': '&'
-}
-
-
-def decode_morse(morse_code):
-    morse_code = morse_code.strip()
-
-    words = morse_code.split('   ')
-
-    decoded_message = []
-
-    for word in words:
-        characters = word.split(' ')
-        decoded_word = ''.join(MORSE_CODE_DICT[char] for char in characters)
-        decoded_message.append(decoded_word)
-
-    return ' '.join(decoded_message)
-
-print()
-print(decode_morse('--...'))
+#
+# MORSE_CODE_DICT = {
+#     '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F',
+#     '--.': 'G', '....': 'H', '..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L',
+#     '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P', '--.-': 'Q', '.-.': 'R',
+#     '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X',
+#     '-.--': 'Y', '--..': 'Z', '-----': '0', '.----': '1', '..---': '2',
+#     '...--': '3', '....-': '4', '.....': '5', '-....': '6', '--...': '7',
+#     '---..': '8', '----.': '9', '...---...': 'SOS',
+#     '.-.-.-': '.', '--..--': ',', '..--..': '?', '-.-.--': '!', '-....-': '-',
+#     '-.--.': '(', '-.--.-': ')', '...-..-': '$', '.-...': '&'
+# }
+#
+#
+# def decode_morse(morse_code):
+#     morse_code = morse_code.strip()
+#
+#     words = morse_code.split('   ')
+#
+#     decoded_message = []
+#
+#     for word in words:
+#         characters = word.split(' ')
+#         decoded_word = ''.join(MORSE_CODE_DICT[char] for char in characters)
+#         decoded_message.append(decoded_word)
+#
+#     return ' '.join(decoded_message)
+#
+# print()
+# print(decode_morse('--...'))
+# # print(decode_morse('...-..- ...-..- ...-..-'))
+# print(decode_morse('.   .'))
+# print(decode_morse('. .'))
 # print(decode_morse('...-..- ...-..- ...-..-'))
-print(decode_morse('.   .'))
-print(decode_morse('. .'))
-print(decode_morse('...-..- ...-..- ...-..-'))
+# =============================================
+# Linked list(data structures)
+
+class Node:
+    def __init__(self, data, next=None) -> None:
+        self.data = data
+        self.next = next
+
+
+class LinkedList:
+    def __init__(self, head) -> None:
+        self.head = head
+
+    def append(self, data):
+        tmp = self.head
+        while tmp.next:
+            tmp = tmp.next
+        tmp.next = Node(data)
+
+    def output(self):
+        tmp = self.head
+        while tmp.next:
+            print(tmp.data, tmp.next, end='\n')
+            tmp = tmp.next
+        print(tmp.data, tmp.next, end='\n')
+
+    def pop(self):
+        tmp = self.head
+        while tmp.next.next:
+            tmp = tmp.next
+        tmp.next = None
+
+head = Node(1)
+ll = LinkedList(head)
+ll.append(10)
+ll.append(18)
+ll.append(22)
+ll.append(1)
+ll.output()
+ll.pop()
+ll.output()
+
