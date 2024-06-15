@@ -3,7 +3,7 @@ import axios from 'axios';
 
 @Injectable()
 export class WeatherService {
-    private readonly OPEAN_WEATHER_API_KEY = '0f02c60b2436b9ff13a6ada10918dc84';
+    private readonly OPEAN_WEATHER_API_KEY = process.env.OPEAN_WEATHER_API_KEY;
 
 
     async getWeather(city: string): Promise<any>{
