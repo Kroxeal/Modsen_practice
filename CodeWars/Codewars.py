@@ -309,43 +309,93 @@
 # print(decode_morse('...-..- ...-..- ...-..-'))
 # =============================================
 # Linked list(data structures)
+#
+# class Node:
+#     def __init__(self, data, next=None) -> None:
+#         self.data = data
+#         self.next = next
+#
+#
+# class LinkedList:
+#     def __init__(self, head) -> None:
+#         self.head = head
+#
+#     def append(self, data):
+#         tmp = self.head
+#         while tmp.next:
+#             tmp = tmp.next
+#         tmp.next = Node(data)
+#
+#     def output(self):
+#         tmp = self.head
+#         while tmp.next:
+#             print(tmp.data, tmp.next, end='\n')
+#             tmp = tmp.next
+#         print(tmp.data, tmp.next, end='\n')
+#
+#     def pop(self):
+#         tmp = self.head
+#         while tmp.next.next:
+#             tmp = tmp.next
+#         tmp.next = None
+#
+# head = Node(1)
+# ll = LinkedList(head)
+# ll.append(10)
+# ll.append(18)
+# ll.append(22)
+# ll.append(1)
+# ll.output()
+# ll.pop()
+# ll.output()
+# =========================================
+# Highest Scoring Word
+# Letters = [
+#     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+#     'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+#     'u', 'v', 'w', 'x', 'y', 'z'
+# ]
+#
+# def high(x: str) -> str:
+#     splitted_string = x.split(" ")
+#     biggest_word = ''
+#     biggest_score = 0
+#     for i in range(len(splitted_string)):
+#         tmp_biggest_score = 0
+#         for j in range(len(splitted_string[i])):
+#             tmp_biggest_score += Letters.index(splitted_string[i][j]) + 1
+#         if tmp_biggest_score > biggest_score:
+#             biggest_score = tmp_biggest_score
+#             biggest_word = splitted_string[i]
+#     return biggest_word
+#
+#
+# print(high('sdfs sdf jcvb pd p'))
+# print(high('aa b')) # aa
+# print(high('b aa')) # b
+# print(high("aaa b")) # aaa
+# ===================================
+# Counting Duplicates
+def duplicate_count(text: str) -> int:
+    final_dictionary = dict()
+    count_of_letters = 0
+    text_lower = text.lower()
+    for i in range(len(text_lower)):
+        if text_lower[i] not in final_dictionary:
+            final_dictionary[text_lower[i]] = 1
+        else:
+            final_dictionary[text_lower[i]] += 1
+            if final_dictionary[text_lower[i]] == 2:
+                count_of_letters += 1
 
-class Node:
-    def __init__(self, data, next=None) -> None:
-        self.data = data
-        self.next = next
+
+    return count_of_letters
 
 
-class LinkedList:
-    def __init__(self, head) -> None:
-        self.head = head
+print(duplicate_count("hello world"))
+print(duplicate_count("Indivisibilities"))
+print(duplicate_count("abcdeaB"))
+print(duplicate_count("abcdeaa"))
+print(duplicate_count("abcde"))
 
-    def append(self, data):
-        tmp = self.head
-        while tmp.next:
-            tmp = tmp.next
-        tmp.next = Node(data)
-
-    def output(self):
-        tmp = self.head
-        while tmp.next:
-            print(tmp.data, tmp.next, end='\n')
-            tmp = tmp.next
-        print(tmp.data, tmp.next, end='\n')
-
-    def pop(self):
-        tmp = self.head
-        while tmp.next.next:
-            tmp = tmp.next
-        tmp.next = None
-
-head = Node(1)
-ll = LinkedList(head)
-ll.append(10)
-ll.append(18)
-ll.append(22)
-ll.append(1)
-ll.output()
-ll.pop()
-ll.output()
 
