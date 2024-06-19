@@ -1,4 +1,5 @@
 import os
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from PIL import Image
@@ -56,13 +57,11 @@ class ImageDuplicateFinder:
             for img_path in img_paths:
                 print(f"\t{img_path}")
 
-    def process_folders(self, folder1: str, folder2: str = None) -> None:
-        """Process images from one or two folders"""
-        with ThreadPoolExecutor() as executor:
-            future_to_folder = {}
-            if folder2:
-                future_to_folder[executor.submit(self.load_images_from_folder_generator, folder2)] = folder2
-            future_to_folder[executor.submit(self.load_images_from_folder_generator, folder1)] = folder1
+    def process_folders(self, folders: list) -> None:
+        """Process images from multiple folders using ThreadPoolExecutor"""
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            future_to_folder = {executor.submit(self.load_images_from_folder_generator, folder): folder for folder in
+                                folders}
 
             for future in as_completed(future_to_folder):
                 folder = future_to_folder[future]
@@ -101,9 +100,18 @@ class ImageDuplicateFinder:
 
 
 if __name__ == "__main__":
-    folder1 = os.path.join("5 Flower Types Classification Dataset", "Lilly")
-    folder2 = os.path.join("5 Flower Types Classification Dataset", "Lotus")
+    folders = [
+        os.path.join("5 Flower Types Classification Dataset", "Lilly"),
+        os.path.join("5 Flower Types Classification Dataset", "Lotus"),
+        os.path.join("5 Flower Types Classification Dataset", "Orchid"),
+        os.path.join("5 Flower Types Classification Dataset", "Sunflower"),
+    ]
+
+    start_time = time.time()
 
     finder = ImageDuplicateFinder()
-    finder.process_folders(folder1, folder2)
+    finder.process_folders(folders)
     finder.show_images(20)
+
+    total_time = time.time() - start_time
+    print(f"Total time taken: {total_time} seconds")
