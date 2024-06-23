@@ -376,26 +376,55 @@
 # print(high("aaa b")) # aaa
 # ===================================
 # Counting Duplicates
-def duplicate_count(text: str) -> int:
-    final_dictionary = dict()
-    count_of_letters = 0
-    text_lower = text.lower()
-    for i in range(len(text_lower)):
-        if text_lower[i] not in final_dictionary:
-            final_dictionary[text_lower[i]] = 1
-        else:
-            final_dictionary[text_lower[i]] += 1
-            if final_dictionary[text_lower[i]] == 2:
-                count_of_letters += 1
-
-
-    return count_of_letters
-
-
-print(duplicate_count("hello world"))
-print(duplicate_count("Indivisibilities"))
-print(duplicate_count("abcdeaB"))
-print(duplicate_count("abcdeaa"))
-print(duplicate_count("abcde"))
-
-
+# def duplicate_count(text: str) -> int:
+#     final_dictionary = dict()
+#     count_of_letters = 0
+#     text_lower = text.lower()
+#     for i in range(len(text_lower)):
+#         if text_lower[i] not in final_dictionary:
+#             final_dictionary[text_lower[i]] = 1
+#         else:
+#             final_dictionary[text_lower[i]] += 1
+#             if final_dictionary[text_lower[i]] == 2:
+#                 count_of_letters += 1
+#
+#
+#     return count_of_letters
+#
+#
+# print(duplicate_count("hello world"))
+# print(duplicate_count("Indivisibilities"))
+# print(duplicate_count("abcdeaB"))
+# print(duplicate_count("abcdeaa"))
+# print(duplicate_count("abcde"))
+# ==================================
+# Basics 08: Find next higher number with same Bits (1's)
+# def next_higher(n: int) -> str:
+#     binary = bin(n).replace("0b", "")
+#     reversed_binary = binary[::-1]
+#     new_binary = ''
+#     # prev = -1
+#     # print(binary, 'dsf')
+#     # print(reversed_binary, 'hell')
+#     # # print(binary[-2])
+#     # index = reversed_binary.find('0')
+#     # new_binary = reversed_binary[:index] + '1' + '0' + reversed_binary[index + 2:]
+#     # print(index)
+#     # print(new_binary[::-1])
+#     # return new_binary
+#     is_previous_one = False
+#     for i in range(len(reversed_binary)):
+#         if reversed_binary[i] == '1':
+#             if not is_previous_one and i == 0:
+#                 new_binary += reversed_binary[i]
+#             elif is_previous_one and
+#
+#
+#
+# print(next_higher(10))
+# print(next_higher(129))
+# print(next_higher(127))
+# print(next_higher(1))
+# print(next_higher(323423))
+# ======================
+#
