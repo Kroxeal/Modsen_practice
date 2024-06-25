@@ -427,4 +427,38 @@
 # print(next_higher(1))
 # print(next_higher(323423))
 # ======================
-#
+# Next smaller number with the same digits
+def next_smaller(n):
+    digits = list(str(n))
+
+    i = len(digits) - 2
+    while i >= 0 and digits[i] <= digits[i + 1]:
+        i -= 1
+
+    if i == -1:
+        return -1
+
+    j = len(digits) - 1
+    while digits[j] >= digits[i]:
+        j -= 1
+
+    # Step 3: Swap X and Y
+    digits[i], digits[j] = digits[j], digits[i]
+
+    result = digits[:i + 1] + sorted(digits[i + 1:], reverse=True)
+
+    if result[0] == '0':
+        return -1
+
+    result = int(''.join(result))
+
+    return result
+
+print(next_smaller(907))
+print(next_smaller(1234567908)) # 1234567890
+print(next_smaller(531))
+print(next_smaller(2071))
+print(next_smaller(2017))
+print(next_smaller(9))
+print(next_smaller(135))
+print(next_smaller(1027))
