@@ -428,37 +428,73 @@
 # print(next_higher(323423))
 # ======================
 # Next smaller number with the same digits
-def next_smaller(n):
+# def next_smaller(n):
+#     digits = list(str(n))
+#
+#     i = len(digits) - 2
+#     while i >= 0 and digits[i] <= digits[i + 1]:
+#         i -= 1
+#
+#     if i == -1:
+#         return -1
+#
+#     j = len(digits) - 1
+#     while digits[j] >= digits[i]:
+#         j -= 1
+#
+#     # Step 3: Swap X and Y
+#     digits[i], digits[j] = digits[j], digits[i]
+#
+#     result = digits[:i + 1] + sorted(digits[i + 1:], reverse=True)
+#
+#     if result[0] == '0':
+#         return -1
+#
+#     result = int(''.join(result))
+#
+#     return result
+#
+# print(next_smaller(907))
+# print(next_smaller(1234567908)) # 1234567890
+# print(next_smaller(531))
+# print(next_smaller(2071))
+# print(next_smaller(2017))
+# print(next_smaller(9))
+# print(next_smaller(135))
+# print(next_smaller(1027))
+# ==================================
+# Next bigger number with the same digits
+def next_bigger(n):
     digits = list(str(n))
 
+    # Step 1: Find the rightmost digit which is smaller than the next digit.
     i = len(digits) - 2
-    while i >= 0 and digits[i] <= digits[i + 1]:
+    while i >= 0 and digits[i] >= digits[i + 1]:
         i -= 1
 
+    # If no such digit is found, return -1.
     if i == -1:
         return -1
 
+    # Step 2: Find the smallest digit on the right side of the pivot which is larger than the pivot.
     j = len(digits) - 1
-    while digits[j] >= digits[i]:
+    while digits[j] <= digits[i]:
         j -= 1
 
-    # Step 3: Swap X and Y
+    # Step 3: Swap the pivot digit and the smallest larger digit found.
     digits[i], digits[j] = digits[j], digits[i]
 
-    result = digits[:i + 1] + sorted(digits[i + 1:], reverse=True)
-
-    if result[0] == '0':
-        return -1
+    # Step 4: Sort the digits after the original position of the pivot.
+    result = digits[:i + 1] + sorted(digits[i + 1:])
 
     result = int(''.join(result))
 
     return result
 
-print(next_smaller(907))
-print(next_smaller(1234567908)) # 1234567890
-print(next_smaller(531))
-print(next_smaller(2071))
-print(next_smaller(2017))
-print(next_smaller(9))
-print(next_smaller(135))
-print(next_smaller(1027))
+
+print(next_bigger(513))
+print(next_bigger(21))
+print(next_bigger(12))
+print(next_bigger(9))
+print(next_bigger(111))
+
