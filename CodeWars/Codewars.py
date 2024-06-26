@@ -9,6 +9,7 @@
 #     temporary_list += [0] * counter_of_zeros
 #     return temporary_list
 
+
 # print(move_zeros([1, 2, 0, 1, 0, 1, 0, 3, 0, 1]))  # [1, 2, 1, 1, 3, 1, 0, 0, 0, 0]
 # print(move_zeros([9, 0, 0, 9, 1, 2, 0, 1, 0, 1, 0, 3, 0, 1, 9, 0, 0, 0, 0, 9]))  # [9, 9, 1, 2, 1, 1, 3, 1, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 # print(move_zeros([0, 0]))  # [0, 0]
@@ -464,37 +465,48 @@
 # print(next_smaller(1027))
 # ==================================
 # Next bigger number with the same digits
-def next_bigger(n):
-    digits = list(str(n))
+# def next_bigger(n):
+#     digits = list(str(n))
+#
+#     i = len(digits) - 2
+#     while i >= 0 and digits[i] >= digits[i + 1]:
+#         i -= 1
+#
+#     if i == -1:
+#         return -1
+#
+#     j = len(digits) - 1
+#     while digits[j] <= digits[i]:
+#         j -= 1
+#
+#     digits[i], digits[j] = digits[j], digits[i]
+#
+#     result = digits[:i + 1] + sorted(digits[i + 1:])
+#
+#     result = int(''.join(result))
+#
+#     return result
+#
+#
+# print(next_bigger(513))
+# print(next_bigger(21))
+# print(next_bigger(12))
+# print(next_bigger(9))
+# print(next_bigger(111))
+#
+# ==============================
+# IP Validation
+import re
 
-    # Step 1: Find the rightmost digit which is smaller than the next digit.
-    i = len(digits) - 2
-    while i >= 0 and digits[i] >= digits[i + 1]:
-        i -= 1
 
-    # If no such digit is found, return -1.
-    if i == -1:
-        return -1
+def is_valid_IP(strng):
+    ip_pattern = r'(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}\Z'
 
-    # Step 2: Find the smallest digit on the right side of the pivot which is larger than the pivot.
-    j = len(digits) - 1
-    while digits[j] <= digits[i]:
-        j -= 1
-
-    # Step 3: Swap the pivot digit and the smallest larger digit found.
-    digits[i], digits[j] = digits[j], digits[i]
-
-    # Step 4: Sort the digits after the original position of the pivot.
-    result = digits[:i + 1] + sorted(digits[i + 1:])
-
-    result = int(''.join(result))
-
-    return result
+    return re.match(ip_pattern, strng) is not None
 
 
-print(next_bigger(513))
-print(next_bigger(21))
-print(next_bigger(12))
-print(next_bigger(9))
-print(next_bigger(111))
-
+print(is_valid_IP('12.255.56.1'))
+print(is_valid_IP('123.255.789.0'))
+print(is_valid_IP('1.2.3'))
+print(is_valid_IP(''))
+print(is_valid_IP('257.2.3.5'))
