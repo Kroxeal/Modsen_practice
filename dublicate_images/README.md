@@ -1,9 +1,10 @@
 # Image Duplicate Finder
-Finds dublicates of images.
+Finds duplicates of images.
 
 ## Table of Contents
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
+- [Running](#running)
 - [About The Project](#about-the-project)
 
 
@@ -46,4 +47,4 @@ python main.py
 
 
 ## About The Project
-This programm allows you to find dublicaties of images using imagehash.
+This program allows you to find duplicates of images using imagehash.
