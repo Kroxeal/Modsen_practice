@@ -1,7 +1,7 @@
 from PIL import Image
 import imagehash
 
-
+     
 class ImageHasher:
     @staticmethod
     def calculate_image_hashes(images_generator):

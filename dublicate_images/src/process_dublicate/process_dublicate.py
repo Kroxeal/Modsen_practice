@@ -11,7 +11,7 @@ class DuplicateProcessor:
     def __init__(self):
         self.duplicate_finder = DuplicateFinder()
 
-    def process_folders(self, folders):
+    def process_folders(self, folders: list):
         """
         Process images from multiple folders using ThreadPoolExecutor.
         """
@@ -35,7 +35,7 @@ class DuplicateProcessor:
         else:
             self.duplicate_finder.print_duplicates()
 
-    def show_images(self, limit):
+    def show_images(self, limit: int):
         """
         Show duplicate images.
         """
