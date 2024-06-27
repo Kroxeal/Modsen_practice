@@ -21,6 +21,7 @@ You should install additional libraries like:
 - PIL
 - matplotlib
 - imagehash
+
 Using following command:
 ```
 pip install requirements.txt
