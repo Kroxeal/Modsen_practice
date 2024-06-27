@@ -21,8 +21,8 @@ class TestImageDuplicateFinder(unittest.TestCase):
         ]
 
         for image in test_images:
-            shutil.copy(os.path.join("test_data", image), self.temp_folders[0])
-            shutil.copy(os.path.join("test_data", image), self.temp_folders[1])
+            shutil.copy(os.path.join("../test_data", image), self.temp_folders[0])
+            shutil.copy(os.path.join("../test_data", image), self.temp_folders[1])
 
         self.finder = ImageDuplicateFinder()
 
