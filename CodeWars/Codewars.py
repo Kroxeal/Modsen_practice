@@ -496,17 +496,50 @@
 #
 # ==============================
 # IP Validation
-import re
+# import re
+#
+#
+# def is_valid_IP(strng):
+#     ip_pattern = r'(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}\Z'
+#
+#     return re.match(ip_pattern, strng) is not None
+#
+#
+# print(is_valid_IP('12.255.56.1'))
+# print(is_valid_IP('123.255.789.0'))
+# print(is_valid_IP('1.2.3'))
+# print(is_valid_IP(''))
+# print(is_valid_IP('257.2.3.5'))
+# ==============================
+# sort the odd
+
+# def quick_sort(array: list) -> list:
+#     for i in range(len(array)):
+#         pass
 
 
-def is_valid_IP(strng):
-    ip_pattern = r'(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}\Z'
+def sort_array(source_array: list) -> list:
+    odd_digits_list = [] # nechetnie
 
-    return re.match(ip_pattern, strng) is not None
+    for i in range(len(source_array)):
+        if source_array[i] % 2 != 0:
+            odd_digits_list.append(source_array[i])
+
+    odd_digits_list = sorted(odd_digits_list)
+
+    iter_of_odd_digits = iter(odd_digits_list)
+
+    for i in range(len(source_array)):
+        if source_array[i] % 2 != 0:
+            source_array[i] = next(iter_of_odd_digits)
+
+    return source_array
 
 
-print(is_valid_IP('12.255.56.1'))
-print(is_valid_IP('123.255.789.0'))
-print(is_valid_IP('1.2.3'))
-print(is_valid_IP(''))
-print(is_valid_IP('257.2.3.5'))
+print(sort_array([5, 3, 2, 8, 1, 4, 6, 7, 4, 3, 3]))
+print(sort_array([5, 3, 1, 8, 0])) # [1, 3, 5, 8, 0]
+print(sort_array([7, 1])) # [1, 7]
+print(sort_array([5, 8, 6, 3, 4])) # [5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
+print(sort_array([5, 3, 2, 8, 1, 4])) # [5, 8, 6, 3, 4]  =>  [1, 3, 2, 8, 5, 4]
+
+
