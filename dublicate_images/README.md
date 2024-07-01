@@ -24,12 +24,12 @@ You should install additional libraries like:
 
 Using following command:
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Preparation
-- Put a folder with your images in the folder of project(where main.py file is situated)
-- Change name(s) of folder(s) in main.py:
+- Place a folder with your images in the project directory (where main.py is located).
+- Change the folder name(s) in main.py:
 ```
 folders = [
         os.path.join("5 Flower Types Classification Dataset", "Lilly"),
@@ -41,11 +41,12 @@ folders = [
 
 
 ## Running
-You should be in the folder of this project. So, just run this command:
+Navigate to the project directory and run the following command:
+
 ```
 python main.py
 ```
 
 
 ## About The Project
-This program allows you to find duplicates of images using imagehash.
+This program allows you to find duplicate images using imagehash.
