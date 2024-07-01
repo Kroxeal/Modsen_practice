@@ -1,12 +1,13 @@
 # Image Duplicate Finder
 Finds duplicates of images.
 
+![Example](img.png)
+
 ## Table of Contents
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
 - [Running](#running)
 - [About The Project](#about-the-project)
-
 
 ## Technologies
 - [PIL](https://pypi.org/project/pillow/)
