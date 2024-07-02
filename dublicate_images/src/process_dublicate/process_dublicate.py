@@ -1,5 +1,8 @@
 import os
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
+
+import imagehash
+from PIL import Image
 
 from src.image_loader.image_loader import ImageLoader
 from src.image_hasher.image_hasher import ImageHasher
@@ -16,28 +19,50 @@ class DuplicateProcessor:
         Process images from multiple folders using ThreadPoolExecutor.
         """
         with ThreadPoolExecutor(max_workers=4) as executor:
-            future_to_folder = {executor.submit(ImageLoader.load_images_from_folder, folder): folder for folder in folders}
+            future_to_folder = {executor.submit(self._load_images, folder): folder for folder in folders}
 
             for future in as_completed(future_to_folder):
                 folder = future_to_folder[future]
                 try:
                     images_generator = future.result()
                     if images_generator:
-                        image_hashes = ImageHasher.calculate_image_hashes(images_generator)
-                        self.duplicate_finder.add_image_hashes(image_hashes)
+                        self._process_images(images_generator)
                 except Exception as exc:
-                    print(f"Error processing {folder}: {exc}")
+                    print(f"Error process {folder}: {exc}")
 
         self.duplicate_finder.find_duplicates()
 
         if not self.duplicate_finder.get_duplicates():
-            print("No duplicates found.")
+            pass
         else:
+            print("No duplicates found.")
             self.duplicate_finder.print_duplicates()
+
+    def _load_images(self, folder: str):
+        return list(ImageLoader.load_images_from_folder(folder))
+
+    def _process_images(self, images_generator):
+        with ProcessPoolExecutor() as executor:
+            future_to_image = {executor.submit(self._hash_image, img_path, img): (img_path, img) for img_path, img in images_generator}
+            image_hashes = {}
+            for future in as_completed(future_to_image):
+                try:
+                    img_path, hash_val = future.result()
+                    image_hashes[img_path] = hash_val
+                except Exception as exc:
+                    img_path, _ = future_to_image[future]
+                    print(f"Error process hash {img_path}: {exc}")
+            self.duplicate_finder.add_image_hashes(image_hashes)
+
+    @staticmethod
+    def _hash_image(img_path, img):
+        img = img.convert('RGB').resize((256, 256), Image.Resampling.LANCZOS)
+        hash_val = imagehash.phash(img)
+        return img_path, hash_val
 
     def show_images(self, limit: int):
         """
-        Show duplicate images.
+        Show duplicate images
         """
         duplicates = self.duplicate_finder.get_duplicates()
         ImageDisplay.show_images(duplicates, limit)

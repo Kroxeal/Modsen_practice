@@ -1,7 +1,7 @@
 # Image Duplicate Finder
 Finds duplicates of images.
 
-![Example](img.png)
+![Example](git_images/img.png)
 
 ## Table of Contents
 - [Technologies](#technologies)
