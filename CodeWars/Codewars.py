@@ -568,23 +568,66 @@
 # print(likes(['Alex', 'Jacob', 'Mark', 'Max']))
 # print(likes([]))
 # ============================
-def persistence(num: int) -> int:
-    count = 0
-    while num >= 10:
-        num = multiply_digits(num)
-        count += 1
-    return count
+# def persistence(num: int) -> int:
+#     count = 0
+#     while num >= 10:
+#         num = multiply_digits(num)
+#         count += 1
+#     return count
+#
+#
+# def multiply_digits(n: int) -> int:
+#     product = 1
+#     while n > 0:
+#         product *= n % 10
+#         n //= 10
+#     return product
+#
+#
+# print(persistence(39))
+# print(persistence(4))
+# print(persistence(25))
+# print(persistence(999))
+# =============================
+# def solve(s: str) -> bool:
+#     from collections import Counter
+#
+#     freq = Counter(s)
+#
+#     values = list(freq.values())
+#
+#     freq_of_freq = Counter(values)
+#
+#     if len(freq_of_freq) == 1:
+#         return True
+#
+#     if len(freq_of_freq) == 2:
+#         (freq1, count1), (freq2, count2) = freq_of_freq.items()
+#
+#         if (freq1 == 1 and count1 == 1) or (freq2 == 1 and count2 == 1):
+#             return True
+#
+#         if (freq1 == freq2 + 1 and count1 == 1) or (freq2 == freq1 + 1 and count2 == 1):
+#             return True
+#
+#     return False
+#
+#
+# print(solve('aaaa'))
+# print(solve('abba'))
+# print(solve('abbba'))
+# print(solve('aabbcc'))
+# print(solve('aaaabb'))
+# print(solve('aabbccddd'))
+# print(solve('aabcde'))
+# print(solve('abcde'))
+# print(solve('aaabcde'))
+# print(solve('abbccc'))
+# print(solve('aabbccdddeee'))
+# =====================================
+def find_it(arr):
+    result = 0
+    for num in arr:
+        result ^= num
+    return result
 
-
-def multiply_digits(n: int) -> int:
-    product = 1
-    while n > 0:
-        product *= n % 10
-        n //= 10
-    return product
-
-
-print(persistence(39))
-print(persistence(4))
-print(persistence(25))
-print(persistence(999))
