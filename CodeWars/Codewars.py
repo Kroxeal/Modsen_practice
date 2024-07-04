@@ -543,27 +543,48 @@
 # print(sort_array([5, 3, 2, 8, 1, 4])) # [5, 8, 6, 3, 4]  =>  [1, 3, 2, 8, 5, 4]
 # ========================================
 
-def likes(names: list[str]) -> str:
-    length_of_list = len(names)
+# def likes(names: list[str]) -> str:
+#     length_of_list = len(names)
+#
+#     if length_of_list == 0:
+#         return 'no one likes this'
+#
+#     if length_of_list == 1:
+#         return f'{names[0]} likes this'
+#
+#     if length_of_list == 2:
+#         return f'{names[0]} and {names[1]} like this'
+#
+#     if length_of_list == 3:
+#         return f'{names[0]}, {names[1]} and {names[2]} like this'
+#
+#     if length_of_list > 3:
+#         return f'{names[0]}, {names[1]} and {length_of_list - 2} others like this'
+#
+# print(likes([]))
+# print(likes(['Peter']))
+# print(likes(['Jacob', 'Alex']))
+# print(likes(['Max', 'John', 'Mark']))
+# print(likes(['Alex', 'Jacob', 'Mark', 'Max']))
+# print(likes([]))
+# ============================
+def persistence(num: int) -> int:
+    count = 0
+    while num >= 10:
+        num = multiply_digits(num)
+        count += 1
+    return count
 
-    if length_of_list == 0:
-        return 'no one likes this'
 
-    if length_of_list == 1:
-        return f'{names[0]} likes this'
+def multiply_digits(n: int) -> int:
+    product = 1
+    while n > 0:
+        product *= n % 10
+        n //= 10
+    return product
 
-    if length_of_list == 2:
-        return f'{names[0]} and {names[1]} like this'
 
-    if length_of_list == 3:
-        return f'{names[0]}, {names[1]} and {names[2]} like this'
-
-    if length_of_list > 3:
-        return f'{names[0]}, {names[1]} and {length_of_list - 2} others like this'
-
-print(likes([]))
-print(likes(['Peter']))
-print(likes(['Jacob', 'Alex']))
-print(likes(['Max', 'John', 'Mark']))
-print(likes(['Alex', 'Jacob', 'Mark', 'Max']))
-print(likes([]))
+print(persistence(39))
+print(persistence(4))
+print(persistence(25))
+print(persistence(999))
