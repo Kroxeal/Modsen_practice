@@ -625,9 +625,24 @@
 # print(solve('abbccc'))
 # print(solve('aabbccdddeee'))
 # =====================================
-def find_it(arr):
-    result = 0
-    for num in arr:
-        result ^= num
-    return result
+# def find_it(arr):
+#     result = 0
+#     for num in arr:
+#         result ^= num
+#     return result
+#
+# ======================================
 
+def count(s: str) -> dict:
+    char_count = {}
+
+    for char in s:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+
+    return char_count
+
+
+# ==================================
