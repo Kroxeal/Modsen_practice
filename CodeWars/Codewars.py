@@ -517,29 +517,53 @@
 #     for i in range(len(array)):
 #         pass
 
+#
+# def sort_array(source_array: list) -> list:
+#     odd_digits_list = [] # nechetnie
+#
+#     for i in range(len(source_array)):
+#         if source_array[i] % 2 != 0:
+#             odd_digits_list.append(source_array[i])
+#
+#     odd_digits_list = sorted(odd_digits_list)
+#
+#     iter_of_odd_digits = iter(odd_digits_list)
+#
+#     for i in range(len(source_array)):
+#         if source_array[i] % 2 != 0:
+#             source_array[i] = next(iter_of_odd_digits)
+#
+#     return source_array
+#
+#
+# print(sort_array([5, 3, 2, 8, 1, 4, 6, 7, 4, 3, 3]))
+# print(sort_array([5, 3, 1, 8, 0])) # [1, 3, 5, 8, 0]
+# print(sort_array([7, 1])) # [1, 7]
+# print(sort_array([5, 8, 6, 3, 4])) # [5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
+# print(sort_array([5, 3, 2, 8, 1, 4])) # [5, 8, 6, 3, 4]  =>  [1, 3, 2, 8, 5, 4]
+# ========================================
 
-def sort_array(source_array: list) -> list:
-    odd_digits_list = [] # nechetnie
+def likes(names: list[str]) -> str:
+    length_of_list = len(names)
 
-    for i in range(len(source_array)):
-        if source_array[i] % 2 != 0:
-            odd_digits_list.append(source_array[i])
+    if length_of_list == 0:
+        return 'no one likes this'
 
-    odd_digits_list = sorted(odd_digits_list)
+    if length_of_list == 1:
+        return f'{names[0]} likes this'
 
-    iter_of_odd_digits = iter(odd_digits_list)
+    if length_of_list == 2:
+        return f'{names[0]} and {names[1]} like this'
 
-    for i in range(len(source_array)):
-        if source_array[i] % 2 != 0:
-            source_array[i] = next(iter_of_odd_digits)
+    if length_of_list == 3:
+        return f'{names[0]}, {names[1]} and {names[2]} like this'
 
-    return source_array
+    if length_of_list > 3:
+        return f'{names[0]}, {names[1]} and {length_of_list - 2} others like this'
 
-
-print(sort_array([5, 3, 2, 8, 1, 4, 6, 7, 4, 3, 3]))
-print(sort_array([5, 3, 1, 8, 0])) # [1, 3, 5, 8, 0]
-print(sort_array([7, 1])) # [1, 7]
-print(sort_array([5, 8, 6, 3, 4])) # [5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
-print(sort_array([5, 3, 2, 8, 1, 4])) # [5, 8, 6, 3, 4]  =>  [1, 3, 2, 8, 5, 4]
-
-
+print(likes([]))
+print(likes(['Peter']))
+print(likes(['Jacob', 'Alex']))
+print(likes(['Max', 'John', 'Mark']))
+print(likes(['Alex', 'Jacob', 'Mark', 'Max']))
+print(likes([]))
