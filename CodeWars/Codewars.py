@@ -646,18 +646,26 @@
 #
 
 # ==================================
-
-def alphabet_position(text):
-    def char_to_position(char):
-        if char.isalpha():
-            return str(ord(char.lower()) - ord('a') + 1)
-        return None
-
-    positions = [char_to_position(char) for char in text if char_to_position(char) is not None]
-
-    return ' '.join(positions)
+#
+# def alphabet_position(text):
+#     def char_to_position(char):
+#         if char.isalpha():
+#             return str(ord(char.lower()) - ord('a') + 1)
+#         return None
+#
+#     positions = [char_to_position(char) for char in text if char_to_position(char) is not None]
+#
+#     return ' '.join(positions)
 
 # ==================================
 
 
+def is_pangram(s: str) -> bool:
+    alphabet_set = set()
+
+    for char in s:
+        if char.isalpha():
+            alphabet_set.add(char.lower())
+
+    return len(alphabet_set) == 26
 
