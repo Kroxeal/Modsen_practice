@@ -632,17 +632,32 @@
 #     return result
 #
 # ======================================
-
-def count(s: str) -> dict:
-    char_count = {}
-
-    for char in s:
-        if char in char_count:
-            char_count[char] += 1
-        else:
-            char_count[char] = 1
-
-    return char_count
-
+#
+# def count(s: str) -> dict:
+#     char_count = {}
+#
+#     for char in s:
+#         if char in char_count:
+#             char_count[char] += 1
+#         else:
+#             char_count[char] = 1
+#
+#     return char_count
+#
 
 # ==================================
+
+def alphabet_position(text):
+    def char_to_position(char):
+        if char.isalpha():
+            return str(ord(char.lower()) - ord('a') + 1)
+        return None
+
+    positions = [char_to_position(char) for char in text if char_to_position(char) is not None]
+
+    return ' '.join(positions)
+
+# ==================================
+
+
+
